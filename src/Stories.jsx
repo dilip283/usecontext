@@ -1,11 +1,12 @@
 import React from 'react'
 import { useGlobalContext } from './context';
 import "./App.css";
+
+
+
 export const Stories = () => {
-
     
-
-  const {hits, isLoading} = useGlobalContext();
+  const {hits, isLoading, removePost} = useGlobalContext();
 
     if(isLoading){
         return(
@@ -17,6 +18,7 @@ export const Stories = () => {
 
   return (
     <>
+    <h2>Tech News</h2>
     {hits.map((curPost) =>{
         const { title, author, objectID, url, num_comments } = curPost;
         return (
@@ -30,7 +32,7 @@ export const Stories = () => {
                         <a href={url} target='_blank'>
                             Reaad More
                         </a>
-                        <a href='/#'>
+                        <a href='/#' onClick={() => removePost(objectID)}>
                             Remove
                         </a>
 
