@@ -11,18 +11,17 @@ export const Stories = () => {
     if(isLoading){
         return(
         <>
-        <h1>Loading...</h1>
+        <h1 className='loading-text'>Loading...</h1>
         </>
         )
     }
 
   return (
     <>
-    <h2>Tech News</h2>
     {hits.map((curPost) =>{
         const { title, author, objectID, url, num_comments } = curPost;
         return (
-            <>
+            
                 <div className='card' key={objectID}>
                     <h2>{title}</h2>
                     <p>
@@ -40,7 +39,7 @@ export const Stories = () => {
 
                 </div>
         
-            </> 
+            
         )
         
     })}

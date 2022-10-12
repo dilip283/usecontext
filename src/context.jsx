@@ -67,13 +67,35 @@ const AppProvider = ({children}) => {
     }
 
 
+    // Define function for Search bar functionality
+    const searchPost = (searchQuery) =>{
+        dispatch({ 
+            type: "SEARCH_QUERY", 
+            payload: searchQuery, 
+        });  
+    }
+
+    // Define Pagination functions
+    const getNextPage = () => {
+        dispatch({
+            type: "NEXT_PAGE",
+        });
+    }
+    const getPrevPage = () => {
+        dispatch({
+            type: "PREV_PAGE",
+        });
+    }
+
+
+    // useEffect is used for call the API function
     useEffect(() => {
         fetchApiData(`${API}query=${state.query}&page=${state.page}`);
 
-    }, []);
+    }, [state.query, state.page]);
 
     return (
-        <AppContext.Provider value={{...state, removePost}}>
+        <AppContext.Provider value={{...state, removePost, searchPost, getNextPage, getPrevPage }}>
             {children}
         </AppContext.Provider>
     );
